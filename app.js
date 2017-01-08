@@ -21,21 +21,23 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // app.use(cookieParser());
 // app.use(express.static(path.join(__dirname, 'public')));
 
-var port = process.env.PORT || 3000;
+// var port = process.env.PORT || 3000;
 
 
 // app.use('/', index);
 var router = express.Router();
 router.get('/', function(req, res) {
-  res.json({ thing: 'something' });
+  res.json({ app: 'root' });
 });
+router.get('/api', function(req, res) {
+  res.json({ app: 'api' });
+});
+app.use('/', router);
 
-app.use('/api', router);
 
 
-
-app.listen(port);
-console.log('Magic happens on port ' + port);
+// app.listen(port);
+// console.log('Magic happens on port ' + port);
 
 
 
@@ -58,4 +60,4 @@ console.log('Magic happens on port ' + port);
 //  res.render('error');
 //});
 
-// module.exports = app;
+module.exports = app;
