@@ -1,6 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var app = express();
+var delivery = require('./app/delivery');
 // var logger = require('morgan');
 // var cookieParser = require('cookie-parser');
 
@@ -12,11 +13,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 
 var router = express.Router();
-router.get('/', function(req, res) {
-  res.json({ app: 'root2' });
-});
-router.get('/api', function(req, res) {
-  res.json({ app: 'api2' });
+router.get('/',         function(req, res)   {res.json({ app: 'root2' });});
+router.get('/api',      function(req, res)   {res.json({ app: 'api2' });});
+router.get('/delivery', function(req, res)   {
+  delivery();
 });
 app.use('/', router);
 
