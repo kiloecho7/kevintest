@@ -1,3 +1,5 @@
+'use strict'
+
 var oracle = require('oracledb');
 
 var connectionString = process.env.OCT_VAULT_DB_LIDS_HOSTNAME + ":" + process.env.OCT_VAULT_DB_LIDS_PORT + "/" + process.env.OCT_VAULT_DB_LIDS_RESOURCENAME;
@@ -6,6 +8,10 @@ var user = process.env.OCT_VAULT_DB_LIDS_USERNAME;
 
 var getResults = function(req, res) {
 
+  console.log('connecting');
+  console.log('user: ' + user);
+  console.log('password: ' + password);
+  console.log('connectString: ' + connectString);
   oracle.getConnection(
     {
       user              : user,
@@ -15,9 +21,12 @@ var getResults = function(req, res) {
     },
     function(err, connection)
     {
+      console.log('after connection');
       if (err) {
+        console.log('connection error');
         console.error(err.message); return;
       }
+      console.log('connetion no error');
       connection.execute(
         "SELECT * from delivery where rownum = 1",
         [],
