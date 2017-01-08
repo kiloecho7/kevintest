@@ -18,7 +18,7 @@ var router = express.Router();
 router.get('/',         function(req, res)   {res.json({ app: 'root2' });});
 router.get('/api',      function(req, res)   {res.json({ app: 'api2' });});
 router.get('/delivery', function(req, res)   {
-  delivery();
+  delivery(req, res);
 });
 app.use('/', router);
 

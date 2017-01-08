@@ -7,26 +7,16 @@ var password = process.env.OCT_VAULT_DB_LIDS_PASSWORD;
 var user = process.env.OCT_VAULT_DB_LIDS_USERNAME;
 
 var getResults = function(req, res) {
-
-  console.log('connecting');
-  console.log('user: ' + user);
-  console.log('password: ' + password);
-  console.log('connectString: ' + connectString);
-  oracle.getConnection(
-    {
+  oracle.getConnection({
       user              : user,
       password          : password,
       connectString     : connectionString
 
     },
-    function(err, connection)
-    {
-      console.log('after connection');
+    function(err, connection) {
       if (err) {
-        console.log('connection error');
         console.error(err.message); return;
       }
-      console.log('connetion no error');
       connection.execute(
         "SELECT * from delivery where rownum = 1",
         [],
@@ -60,14 +50,14 @@ var getResults = function(req, res) {
     resultSet.getRow(
       function (err, row)
       {
-        var location = 'Unknown Location';
+        var delRecord = 'delivery not found';
         if (err) {
           console.error(err.message);
         } else if (row) {
-          location = row.pop();
+          delRecord = row;
         }
         doClose(connection, resultSet);
-        res.json({ delivery: location });
+        res.json({ delivery: delRecord });
       }
     );
   }
