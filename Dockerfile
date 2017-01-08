@@ -1,4 +1,4 @@
-FROM quay.octanner.io/base/oct-node:6.9.1
+FROM quay.octanner.io/base/oct-node:6.9.1-oracledb
 
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app

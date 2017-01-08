@@ -2,9 +2,13 @@
   "name": "kevintest",
   "version": "0.0.1",
   "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
   "dependencies": {
     "body-parser": "~1.15.2",
-    "express": "~4.14.0",
+    "debug": "~2.2.0",
+    "oracledb": "~1.11.0",
     "node-vault-js": "~1.2.0"
   }
 }
