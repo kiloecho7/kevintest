@@ -27,10 +27,13 @@ var port = process.env.PORT || 3000;
 // app.use('/', index);
 var router = express.Router();
 router.get('/', function(req, res) {
-  res.json({ thing: 'something' });
+  res.json({ bob: 'root' });
+});
+router.get('/api', function(req, res) {
+  res.json({ sam: 'api' });
 });
 
-app.use('/api', router);
+app.use('/', router);
 
 
 
@@ -58,4 +61,4 @@ console.log('Magic happens on port ' + port);
 //  res.render('error');
 //});
 
-// module.exports = app;
+module.exports = app;
